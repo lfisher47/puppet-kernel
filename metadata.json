@@ -1,0 +1,29 @@
+{
+  "name": "lfisher47-kernel",
+  "version": "0.0.1",
+  "author": "lfisher47",
+  "summary": "Kernel STIG rule enforement",
+  "license": "GNU GPL 2.0",
+  "source": "git://github.com/lfisher47/puppet-kernel",
+  "project_page": "https://github.com/lfisher47/puppet-kernel",
+  "issues_url": "github.com/lfisher47/puppet-kernel/issues",
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "RedHat",
+      "operatingsystemrelease": [
+        "5",
+        "6"
+      ]
+    }
+  },
+  "requirements": [
+    {
+      "name": "puppet",
+      "version_requirement": ">=2.7.20 <4.0.0"
+    }
+  ],
+  "description": "Kernel STIG module",
+  "dependencies": [
+
+  ]
+}
