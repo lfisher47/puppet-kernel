@@ -74,12 +74,22 @@ class kernel {
   }
 
   #RHEL-06-000308
-  augeas { 'Disable Core Dumps for All Users':
+  augeas { 'Disable Core Dumps for All Users Hard':
     context => '/files/etc/security/limits.conf',
     changes => [
       "rm domain[.='*'][./type='hard' and ./item='core']",
       "set domain[last() + 1] '*'",
       "set domain[last()]/type 'hard'",
+      "set domain[last()]/item 'core'",
+      'set domain[last()]/value 0',
+    ],
+  }
+  augeas { 'Disable Core Dumps for All Users Soft':
+    context => '/files/etc/security/limits.conf',
+    changes => [
+      "rm domain[.='*'][./type='soft' and ./item='core']",
+      "set domain[last() + 1] '*'",
+      "set domain[last()]/type 'soft'",
       "set domain[last()]/item 'core'",
       'set domain[last()]/value 0',
     ],
