@@ -83,6 +83,7 @@ class kernel {
       "set domain[last()]/item 'core'",
       'set domain[last()]/value 0',
     ],
+    onlyif  => "match domain[.='*'][./type='hard' and ./item='core' and ./value='0'] size != 1",
   }
   augeas { 'Disable Core Dumps for All Users Soft':
     context => '/files/etc/security/limits.conf',
@@ -93,6 +94,7 @@ class kernel {
       "set domain[last()]/item 'core'",
       'set domain[last()]/value 0',
     ],
+    onlyif  => "match domain[.='*'][./type='soft' and ./item='core' and ./value='0'] size != 1",
   }
   # RHEL-06-000017
   augeas { 'Ensure SELinux Not Disabled in /etc/grub.conf':
