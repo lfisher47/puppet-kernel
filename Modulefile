@@ -1,5 +1,5 @@
 name    'lfisher47-kernel'
-version '0.0.3'
+version '0.0.4'
 author  'Leah Fisher'
 license 'Apache2'
 project_page 'https://github.com/lfisher47/puppet-kernel'
