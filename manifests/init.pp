@@ -22,7 +22,9 @@
 # Dependencies:
 #  None
 ############################################################
-class kernel {
+class kernel (
+  $needusb = false,
+){
   kernel::disableModule{ 'Disable Cramfs':
     module => 'cramfs',
   }
@@ -69,8 +71,10 @@ class kernel {
     module => 'tipc',
   }
   #RHEL-06-000503
-  kernel::disableModule { 'Disable usb-storage':
-    module => 'usb-storage',
+  if (! $needusb) {
+    kernel::disableModule { 'Disable usb-storage':
+      module => 'usb-storage',
+    }
   }
 
   #RHEL-06-000308
