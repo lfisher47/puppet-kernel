@@ -24,6 +24,7 @@
 ############################################################
 class kernel (
   $needusb = false,
+  $limits  = true,
 ){
   kernel::disableModule{ 'Disable Cramfs':
     module => 'cramfs',
@@ -76,7 +77,7 @@ class kernel (
       module => 'usb-storage',
     }
   }
-
+  if ( $limits ) { #separating limits from the kernel module.
   #RHEL-06-000308
   augeas { 'Disable Core Dumps for All Users Hard':
     context => '/files/etc/security/limits.conf',
@@ -99,6 +100,7 @@ class kernel (
       'set domain[last()]/value 0',
     ],
     onlyif  => "match domain[.='*'][./type='soft' and ./item='core' and ./value='0'] size != 1",
+  }
   }
   # RHEL-06-000017
   augeas { 'Ensure SELinux Not Disabled in /etc/grub.conf':
